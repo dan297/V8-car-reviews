@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 
 dbConnection.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
-      console.log("Server listening on port:  " + PORT);
+      console.log("Server listening on port:  http://localhost:" + PORT);
     });
   });
