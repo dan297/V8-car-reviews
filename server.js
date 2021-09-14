@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const dbConnection = require ('./config/connection')
 
 const app = express()
 
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
     res.send("WELCOME")
 })
 
-app.listen(PORT, () => {
-    console.log("Server listening on port: http://localhost:" + PORT)
-})
+dbConnection.sync({ force: false }).then(() => {
+    app.listen(PORT, () => {
+      console.log("Server listening on port:  " + PORT);
+    });
+  });
