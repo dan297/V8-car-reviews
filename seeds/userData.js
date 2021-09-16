@@ -8,6 +8,7 @@ const carData = [
     number_of_reviews: 10,
     email: "BenRoberts@gmail.com",
     password: "1234",
+    username: "Ben123"
   },
   {
     first_name: "Mike",
@@ -16,6 +17,7 @@ const carData = [
     number_of_reviews: 2,
     email: "MikeJames@gmail.com",
     password: "5678",
+    username: "Mike123"
   },
   {
     first_name: "Michelle",
@@ -24,6 +26,7 @@ const carData = [
     number_of_reviews: 3,
     email: "Michelle@gmail.com",
     password: "112211",
+    username: "Michelle123"
   },
 ];
 
