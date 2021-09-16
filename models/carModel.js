@@ -17,6 +17,9 @@ Car.init(
       make: {
         type: DataTypes.STRING,
       },
+      images: {
+        type: DataTypes.ARRAY,
+      },
     },
     {
       sequelize,
