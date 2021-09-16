@@ -28,10 +28,21 @@ router.post("/login", async (req, res) => {
 });
 
 
-module.exports = router;
+
 
 
 // route for sign up (post)
 
+router.post("/", async (req, res) => {
+    try {
+      const newUser = await User.create({ ...req.body});
+  
+      req.session.save(() => {
+        req.session.logged_in = true;
+        req.session.user_id = newUser.id;
+
+      }}
+=======
 // get username from email (get)
 
+module.exports = router;
