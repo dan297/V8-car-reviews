@@ -8,9 +8,9 @@ const seedAll = async () => {
 
     await seedCar();
 
-    await seedReview();
-
     await seedUser();
+
+    await seedReview();
 
     process.exit(0);
 };

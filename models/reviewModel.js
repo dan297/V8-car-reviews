@@ -17,24 +17,22 @@ Review.init(
         description: {
             type: DataTypes.STRING,
         },
-        description: {
-            car_id: {
-                type: DataTypes.INTEGER,
-                references: {
-                    model: 'cars',
-                    key: 'id',
-                    unique: false
-                }
+
+        car_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'cars',
+                key: 'id',
+                unique: false
             }
         },
-        description: {
-            user_id: {
-                type: DataTypes.INTEGER,
-                references: {
-                    model: 'users',
-                    key: 'id',
-                    unique: false
-                },
+
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'users',
+                key: 'id',
+                unique: false
             },
         },
     },
