@@ -15,21 +15,19 @@ const sess = {
   };
   
   app.use(session(sess));
-const app = express()
 
-const PORT = process.env.PORT || 3000
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-    res.send("WELCOME")
-})
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use('/', routes);
 
 dbConnection.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-      console.log("Server listening on port:  http://localhost:" + PORT);
-    });
+  app.listen(PORT, () => {
+    console.log("Server listening on port:  http://localhost:" + PORT);
   });
+});
