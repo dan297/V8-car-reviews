@@ -36,20 +36,12 @@ module.exports = router;
 
 router.post("/", async (req, res) => {
     try {
-      const newUser = await User.create({ ...req.body, isInstructor: false });
+      const newUser = await User.create({ ...req.body});
   
       req.session.save(() => {
         req.session.logged_in = true;
         req.session.user_id = newUser.id;
-  
-        const { password, ...safeProps } = newUser.get({ plain: true });
-  
-        res.json({ user: safeProps });
-      });
-    } catch (error) {
-      res.status(400).json(error);
-    }
-  });
 
+      }}
 // get username from email (get)
 
