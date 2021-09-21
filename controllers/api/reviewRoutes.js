@@ -3,13 +3,13 @@ const { User } = require('../../models');
 
 // create and Add a review - will use review and car table (put)
 
-app.post('/api/reviewRoutes', (req, res) => {
+router.post('/api/reviewRoutes', (req, res) => {
     res.json(`${req.method} request received to get reviews`);
     console.info(`${req.method} request received to get reviews`);
 });
 
 //READ - find all reviews my  car ID  (GET)
-app.get('/api/reviews/:review_id', (req, res) => {
+router.get('/api/reviews/:review_id', async (req, res) => {
     if (req.params.review_id) {
         console.info(`${req.method} request received to get a single a review`);
         const reviewId = req.params.review_id;
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
 
 // Delete (delete)
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
       const projectData = await Project.destroy({
         where: {
@@ -64,3 +64,4 @@ router.delete('/:id', withAuth, async (req, res) => {
   });
 
 
+  module.exports = router;

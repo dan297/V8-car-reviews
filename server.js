@@ -4,13 +4,17 @@ const dbConnection = require ('./config/connection')
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+const routes = require("./controllers")
+
+const app = express()
+
 const sess = {
     secret: 'Super secret secret',
     cookie: {},
     resave: false,
     saveUninitialized: true,
     store: new SequelizeStore({
-      db: sequelize
+      db: dbConnection
     })
   };
   
