@@ -1,18 +1,22 @@
+const router = require('express').Router();
+const { carModel, reviewModel, userModel } = require('../../models');
+
 // seaching for cars (get)
 
-// const router = require('express').Router();
+router.get('/', (req, res) => {
+    carModel.findAll({
+      include: [
+        {
+          model: reviewModel,
+          attributes: ['rating', 'description']
+        },
+      ]
+    })
+      .then(carData => res.json(carData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
-// const { User } = require('../../models');
-
-
-// router.get("/cars", async (req, res) => {
-//     readFromFile("seeds/reviewData").then((data) => res.json(JSON.parse(data)));
-
-
-
-
-
-
-
-// }
 
