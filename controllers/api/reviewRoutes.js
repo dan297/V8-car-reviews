@@ -1,7 +1,5 @@
 const router = require('express').Router();
-
 const { User } = require('../../models');
-
 
 // create and Add a review - will use review and car table (put)
 
@@ -10,8 +8,6 @@ app.post('/api/reviewRoutes', (req, res) => {
     console.info(`${req.method} request received to get reviews`);
 });
 
-
-
 //READ - find all reviews my  car ID  (GET)
 app.get('/api/reviews/:review_id', (req, res) => {
     if (req.params.review_id) {
@@ -19,17 +15,13 @@ app.get('/api/reviews/:review_id', (req, res) => {
         const reviewId = req.params.review_id;
         const userData = await User.findAll();
         res.status(200).json(userData);
-
-
     }
     });
 
 
-
-
+    
 
 //UPDATE - rate review (put / patch), edit a review
-
 router.put('/:id', async (req, res) => {
     try {
       const userData = await User.update(req.body, {
@@ -48,9 +40,6 @@ router.put('/:id', async (req, res) => {
     }
   });
   
-
-
-
 
 // Delete (delete)
 
@@ -73,3 +62,5 @@ router.delete('/:id', withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+
