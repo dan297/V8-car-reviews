@@ -9,44 +9,36 @@ const { findOne } = require('../../models/userModel');
 // create and Add a review - will use review and car table (put)
 
 app.post('/', async (req, res) => {
-  const {
-    rating,
-    description,
-    make,
-    model,
-    email,
-    images
-  } = req.body;
+  const { make, model, images } = req.body;
 
   // check to see if the car already exsits
-  let car = await Car.findOne({
-    where: {
-      make: make,
-      model: model
-    }
-  })
-
-  if (!car) {
-    car = Car.create({
-      make,
-      model,
-      images
+  try {
+    let car = await Car.findOne({
+      where: {
+        make: make,
+        model: model
+      }
     })
+    // if it does find the car id
+    // if not create a new car
+    if (!car) {
+      car = Car.create({
+        make,
+        model,
+        images
+      })
+    }
+    req.body.carID = car.id;
+
+    // create a new review
+    Review.create(req.body);
+    res.status(200).json({ "message": "Created review" })
+
+  }
+  catch {
+    res.status(500).json({ "message": "Can't create review" })
   }
 
-
-
-
-
-
-  // if it does find the car id
-  //if not create a new car
-  // create a new review
-  //    rating, description, user_id
-
-
-  res.json(`${req.method} request received to get reviews`);
-  console.info(`${req.method} request received to get reviews`);
 });
 
 
@@ -58,8 +50,6 @@ app.get('/:review_id', (req, res) => {
     const reviewId = req.params.review_id;
     const userData = await User.findAll();
     res.status(200).json(userData);
-
-
   }
 });
 
