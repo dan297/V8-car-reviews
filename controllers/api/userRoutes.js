@@ -33,16 +33,33 @@ router.post("/login", async (req, res) => {
 
 // route for sign up (post)
 
-router.post("/", async (req, res) => {
-    try {
-      const newUser = await User.create({ ...req.body});
+// router.post("/", async (req, res) => {
+//     try {
+//       const newUser = await User.create({ ...req.body});
   
-      req.session.save(() => {
-        req.session.logged_in = true;
-        req.session.user_id = newUser.id;
+//       req.session.save(() => {
+//         req.session.logged_in = true;
+//         req.session.user_id = newUser.id;
 
-      }}
-=======
+//       }}
+
 // get username from email (get)
+
+
+
+
+
+
+//route for signing out
+router.post('/logout', (req, res) => {
+    if (req.session.logged_in) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+  });
+  
 
 module.exports = router;
