@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const session = require('express-session')
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const { User } = require('../../models');
 
@@ -33,15 +35,20 @@ router.post("/login", async (req, res) => {
 
 // route for sign up (post)
 
-// router.post("/", async (req, res) => {
-//     try {
-//       const newUser = await User.create({ ...req.body});
+router.post("/signup", async (req, res) => {
+    try {
+      const newUser = await User.create({ ...req.body});
   
-//       req.session.save(() => {
-//         req.session.logged_in = true;
-//         req.session.user_id = newUser.id;
+      req.session.save(() => {
+        req.session.logged_in = true;
+        req.session.user_id = newUser.id;
 
-//       }}
+      })
+    }
+    catch (err) {
+      res.status(500).json(err);
+    }
+})
 
 // get username from email (get)
 
