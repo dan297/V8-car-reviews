@@ -6,7 +6,10 @@ const userRoutes = require('./userRoutes');
 
 
 router.use('/cars', carRoutes);
+
 router.use('/review', reviewRoutes);
+
 router.use('/users', userRoutes);
+
 
 module.exports = router;
