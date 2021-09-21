@@ -5,57 +5,70 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { User } = require('../../models');
 
 
-// route for login to be added (get)
-// expect email and password to be on red.body
 router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
 
-    const { email, password } = req.body;
-
-    const userData = await User.findOne({
-        where: {
-            email
-        }
-    })
-
-    if (!userData) {
-        res.status(400).json("Could not find username / password combination")
-    } else if (userData.password === password) {
-        console.log("Logged in")
-        res.status(200).json("logged in");
-        // this is where we write the code once logged in
-
-    } else {
-        res.status(400).json("Could not find username / password combination");
+    if (!user) {
+      res.status(400).json({
+        message: "You provided an incorrect email and/or password.",
+      });
     }
+
+    // const validPassword = await user.checkPassword(req.body.password);
+    const validPassword = req.body.password
+
+    if (!validPassword) {
+      res.status(400).json({
+        message: "You provided an incorrect email and/or password.",
+      });
+    }
+
+    req.session.save(() => {
+      req.session.logged_in = true;
+      req.session.user_id = user.id;
+
+      res.json("Login Successful");
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "You provided an incorrect email and/or password.",
+    });
+  }
 });
 
+router.post("/register", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
 
-
-
-
-// route for sign up (post)
-
-router.post("/signup", async (req, res) => {
-    try {
-      const newUser = await User.create({ ...req.body});
+    if (!user) {
+      const newUser = await User.create(req.body);
   
       req.session.save(() => {
         req.session.logged_in = true;
         req.session.user_id = newUser.id;
-
-      })
+  
+        res.status(200).json({
+          message: "User created",
+        });
+      });
+    } else {
+      res.status(400).json({
+        message: "Cannot create user",
+      });
     }
-    catch (err) {
-      res.status(500).json(err);
-    }
+  } catch (error) {
+    res.status(400).json(error);
+  }
 })
-
-// get username from email (get)
-
-
-
-
-
 
 //route for signing out
 router.post('/logout', (req, res) => {
@@ -66,7 +79,6 @@ router.post('/logout', (req, res) => {
     } else {
       res.status(404).end();
     }
-  });
-  
+});
 
 module.exports = router;
