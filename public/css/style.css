@@ -253,6 +253,16 @@ input:not(:placeholder-shown) + span{
     cursor: pointer;
   }
 
+  .form-primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2)
+  }
+  
+  .form-primary-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+
   .modal-content .formswap {
       display: inline-block;
       color: #55B15B;
