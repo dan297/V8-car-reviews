@@ -57,6 +57,14 @@ body {
     font-size: 1.4rem;
 }
 
+#logoutBtn:hover span{
+    display: none;
+}
+
+#logoutBtn:hover::after {
+    content: 'LOGOUT';
+}
+
 .navbar .logo {
     width: 10rem;
 }

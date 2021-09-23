@@ -19,9 +19,9 @@
                 <button type="submit" id="search"><i class="fas fa-search"></i></button>
             </form>
             {{#if logged_in}}
-            <button href="" class="main-nav-btn"><i class="fas fa-user"></i>{{username}}</button>
+            <button class="main-nav-btn" id="logoutBtn"><i class="fas fa-user"></i><span>{{username}}</span></button>
             {{else}}
-            <button class="main-nav-btn" id="loginBtn"><i class="fas fa-user"></i>LOG IN</button>          
+            <button class="main-nav-btn" id="loginBtn"><i class="fas fa-user"></i>LOG IN</button>      
             <!-- The Modal -->
             <div id="loginModal" class="modal fluid">
                 <!-- Modal content -->
@@ -91,9 +91,9 @@
         </footer>
     </div>
     {{#if logged_in}}
-   
+    <script src="/js/logoutBtn.js"></script>
     {{else}}
-     <script src="/js/loginModal.js"></script>
+    <script src="/js/loginModal.js"></script>
     {{/if}}
 </body>
 </html>
