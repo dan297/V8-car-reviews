@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt")
 const router = require('express').Router();
 const session = require('express-session')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -15,28 +16,31 @@ router.post("/login", async (req, res) => {
 
     if (!user) {
       res.status(400).json({
-        message: "You provided an incorrect email and/or password.",
+        message: "You provided an incorrect email",
       });
     }
 
-    // const validPassword = await user.checkPassword(req.body.password);
-    const validPassword = req.body.password
+    const validPassword = await user.checkPassword(req.body.password)
+
+    console.log("Check password is valid" + validPassword)
 
     if (!validPassword) {
       res.status(400).json({
-        message: "You provided an incorrect email and/or password.",
+        message: "You provided an incorrect password.",
       });
     }
 
     req.session.save(() => {
       req.session.logged_in = true;
       req.session.user_id = user.id;
+      req.session.username = user.username;
 
       res.json("Login Successful");
     });
   } catch (error) {
+    console.log("Error: "+ error)
     res.status(400).json({
-      message: "You provided an incorrect email and/or password.",
+      message: "Something else went wrong",
     });
   }
 });
@@ -51,10 +55,13 @@ router.post("/register", async (req, res) => {
 
     if (!user) {
       const newUser = await User.create(req.body);
+
+      console.log("Request body: ", req.body)
   
       req.session.save(() => {
         req.session.logged_in = true;
         req.session.user_id = newUser.id;
+        req.session.username = req.body.username;
   
         res.status(200).json({
           message: "User created",
@@ -66,6 +73,7 @@ router.post("/register", async (req, res) => {
       });
     }
   } catch (error) {
+    console.log("Error: "+ error)
     res.status(400).json(error);
   }
 })
