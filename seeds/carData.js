@@ -13,7 +13,7 @@ const carData = [
 
     },
     {
-        make:"Ferrari",
+        make:"ferrari",
         model:"458",
         images: [],
 

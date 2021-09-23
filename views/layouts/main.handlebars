@@ -15,7 +15,7 @@
         <nav class="navbar">
             <a href="/" class="logo">Logo</a>
             <form id="searchForm" autocomplete="off">
-                <input type="text" placeholder="Search for a car" class="search" required>
+                <input type="text" placeholder="Search for a car" class="search" id="searchInput" required>
                 <button type="submit" id="search"><i class="fas fa-search"></i></button>
             </form>
             {{#if logged_in}}
@@ -95,5 +95,7 @@
     {{else}}
     <script src="/js/loginModal.js"></script>
     {{/if}}
+     <script src="/js/searchCar.js"></script>
+
 </body>
 </html>
