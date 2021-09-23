@@ -71,6 +71,7 @@ body {
     text-align: center;
     background: none;
     border: 2px white solid;
+    color: white;
 }
   
 .search:focus {
