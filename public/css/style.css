@@ -39,12 +39,16 @@ body {
 }
 
 .main-nav-btn {
-    width: 10rem;
+    width: 15rem;
     border: 2px white solid;
     border-radius: 5rem;
     text-align: center;
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 2rem;
     font-size: 1.2rem;
+    background: none;
+    color: white;
+    cursor: pointer;
+    letter-spacing: .1rem;
 }
 
 .main-nav-btn i {
@@ -128,3 +132,146 @@ footer p {
     font-size: 1.4rem;
     text-align: center;
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+    backdrop-filter: blur(5px);
+  }
+
+  .fluid {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    border-radius: 2rem;
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40rem; /* Could be more or less, depending on screen size */
+    color: #202020;
+    text-align: center;
+  }
+
+  .modal-content h2 {
+    font-size: 3rem;
+    padding-top: 5rem;
+    font-weight: 700;
+  }
+
+
+.modal-content form{
+    max-width:768px;
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+}
+
+.modal-content label{
+    margin-bottom:15px;
+    position:relative;
+    border-bottom:1px solid #ddd;
+}
+.modal-content input{
+    font-family: "Lato", sans-serif;
+    font-size: 1.6rem;
+    width:100%;
+    padding:10px 0px;
+    margin-top:20px;
+    border:none;
+    outline:none;
+    color: #202020;
+}
+.modal-content input::placeholder{
+    opacity:0;
+}
+form span{
+    position:absolute;
+    top:0;
+    left:0;
+    transform:translateY(30px);
+    transition-duration:300ms;
+}
+
+.modal-content label:focus-within > span,
+input:not(:placeholder-shown) + span{
+    font-size: 1.4rem;
+    transform:translateY(0px);
+}
+
+.hidden {
+    display: none;
+}
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #202020;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+  }
+
+  .form-primary-btn {
+    padding: 1.7rem 3.5rem;
+    border-radius: 10rem;
+    background-color: #55B15B;
+    color: white;
+    border: none;
+    letter-spacing: .3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  .form-primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2)
+  }
+  
+  .form-primary-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  }
+
+  .modal-content .formswap {
+      display: inline-block;
+      color: #55B15B;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      cursor: pointer;
+  }
+
+  #names {
+      display: flex;
+      justify-content: space-between;
+  }

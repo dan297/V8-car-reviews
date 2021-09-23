@@ -21,7 +21,64 @@
             {{#if logged_in}}
             <a href="" class="main-nav-btn"><i class="fas fa-user"></i></a>
             {{else}}
-            <a href="" class="main-nav-btn"><i class="fas fa-user"></i>LOG IN</a>
+            <button class="main-nav-btn" id="loginBtn"><i class="fas fa-user"></i>LOG IN</button>          
+            <!-- The Modal -->
+            <div id="loginModal" class="modal fluid">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="loginForm" id="loginForm">
+                        <h2>Log In</h2>
+                        <form id="login" autocomplete="off">
+                            <label for="email">
+                                <input type="email" id="email" placeholder="Email">
+                                <span>Email</span>
+                            </label>
+                            <label for="password">
+                                <input type="password" id="password" placeholder="Password">
+                                <span>Password</span>
+                            </label>
+                            <button id="login" class="form-primary-btn">
+                                LOG IN
+                            </button>
+                        </form>
+                        <p>OR</p>
+                        <a class="formswap" id="newAcc">Create a new account</a>
+                    </div>
+                    <div class="registerForm hidden" id="registerForm">
+                        <h2>Register</h2>
+                        <form id="register" autocomplete="off">
+                            <div id="names" class="names">
+                                <label for="first-name">
+                                    <input type="text" id="first-name" placeholder="First Name">
+                                    <span>First Name</span>
+                                </label>
+                                <label for="last-name">
+                                    <input type="text" id="last-name" placeholder="Last Name">
+                                    <span>Last Name</span>
+                                </label>
+                            </div>
+                            <label for="email">
+                                <input type="email" id="email" placeholder="Email">
+                                <span>Email</span>
+                            </label>
+                            <label for="password">
+                                <input type="password" id="password" placeholder="Password">
+                                <span>Password</span>
+                            </label>
+                            <label for="username">
+                                <input type="text" id="username" placeholder="Username">
+                                <span>Username</span>
+                            </label>
+                            <button id="register" class="form-primary-btn">
+                                REGISTER
+                            </button>
+                        </form>
+                        <p>OR</p>
+                        <a class="formswap" id="useLogin">Use an existing account</a>
+                    </div>
+                </div>
+            </div>
             {{/if}}
         </nav>
 
@@ -33,6 +90,6 @@
             <p>Lorem ipsum dolor sit amet . - Copyright 2020 ©</p>
         </footer>
     </div>
-    
+    <script src="/js/loginModal.js"></script>
 </body>
 </html>
