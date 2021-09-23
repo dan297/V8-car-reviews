@@ -250,6 +250,7 @@ input:not(:placeholder-shown) + span{
     letter-spacing: .3rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    cursor: pointer;
   }
 
   .modal-content .formswap {
@@ -257,6 +258,7 @@ input:not(:placeholder-shown) + span{
       color: #55B15B;
       margin-top: 2rem;
       margin-bottom: 2rem;
+      cursor: pointer;
   }
 
   #names {
