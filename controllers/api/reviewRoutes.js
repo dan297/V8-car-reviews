@@ -8,7 +8,7 @@ const { findOne } = require('../../models/userModel');
 
 // create and Add a review - will use review and car table (put)
 
-app.post('/', async (req, res) => {
+router.post('/', async (req, res) => {
   const { make, model, images } = req.body;
 
   // check to see if the car already exsits
@@ -44,7 +44,7 @@ app.post('/', async (req, res) => {
 
 
 //READ - find all reviews my  car ID  (GET)
-app.get('/:review_id', (req, res) => {
+router.get('/:review_id', async (req, res) => {
   if (req.params.review_id) {
     console.info(`${req.method} request received to get a single a review`);
     const reviewId = req.params.review_id;
@@ -81,7 +81,7 @@ router.put('/:id', async (req, res) => {
 
 // Delete (delete)
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const projectData = await Project.destroy({
       where: {
@@ -100,3 +100,5 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+module.exports = router
