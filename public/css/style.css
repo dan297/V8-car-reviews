@@ -193,6 +193,7 @@ footer p {
     margin-bottom:15px;
     position:relative;
     border-bottom:1px solid #ddd;
+    cursor: auto;
 }
 .modal-content input{
     font-family: "Lato", sans-serif;
