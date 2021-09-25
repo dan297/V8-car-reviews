@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
 //READ - find all reviews my  car ID  (GET)
 router.get('/:review_id', async (req, res) => {
   if (req.params.review_id) {
+
     console.info(`${req.method} request received to get a single a review`);
     const reviewId = req.params.review_id;
     const userData = await User.findAll();
@@ -53,7 +54,20 @@ router.get('/:review_id', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const reviewsData = await Review.findAll();
 
+    const allReviews = reviewsData.map((review) => review.get({ plain: true }));
+    res.status(200).json(allReviews);
+    console.log(allReviews)
+
+  } catch (error) {
+    res.status(500).json({ message: "could not find any reviews" });
+  }
+
+
+})
 
 
 
