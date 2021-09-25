@@ -29,6 +29,7 @@ const getReviews = async () => {
             descriptionSpan.appendChild(descriptionNode);
 
             const card = document.createElement("div");
+            card.classList.add("card");
             card.appendChild(carIDSpan);
             card.appendChild(ratingSpan);
             card.appendChild(descriptionSpan);
