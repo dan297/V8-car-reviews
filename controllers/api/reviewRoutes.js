@@ -44,15 +44,29 @@ router.post('/', async (req, res) => {
 
 
 //READ - find all reviews my  car ID  (GET)
-router.get('/:review_id', async (req, res) => {
-  if (req.params.review_id) {
 
-    console.info(`${req.method} request received to get a single a review`);
-    const reviewId = req.params.review_id;
-    const userData = await User.findAll();
-    res.status(200).json(userData);
+router.get('/:carID', async (req, res) => {
+  if (req.params.carID) {
+
+    try {
+      const { carID } = req.params;
+      const reviewsByCarIDData = await Review.findAll({
+        where: {
+          car_id: carID
+        }
+      });
+
+      const reviewsByCarID = reviewsByCarIDData.map((review) => review.get({ plain: true }));
+      res.status(200).json(reviewsByCarID);
+
+
+    } catch (error) {
+
+    }
+
   }
 });
+
 
 router.get('/', async (req, res) => {
   try {
@@ -68,8 +82,6 @@ router.get('/', async (req, res) => {
 
 
 })
-
-
 
 //UPDATE - rate review (put / patch), edit a review
 
@@ -91,9 +103,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-
-
-// Delete (delete)
+// Delete (delete) review
 
 router.delete('/:id', async (req, res) => {
   try {
