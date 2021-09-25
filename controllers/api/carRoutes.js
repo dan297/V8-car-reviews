@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const { Car, Review, User } = require('../../models');
-const Sequelize = require('sequelize');
+const { Car } = require('../../models');
 
 // Seaching for cars (get)
 
