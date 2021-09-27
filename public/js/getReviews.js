@@ -36,8 +36,6 @@ const getReviews = async () => {
 
             reviewsDiv.appendChild(card);
 
-
-
         });
 
 
